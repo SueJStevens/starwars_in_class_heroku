@@ -44,10 +44,12 @@ var characters = [
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
+  // res.send("Welcome to the Star Wars Page!")
   res.sendFile(path.join(__dirname, "view.html"));
 });
 
 app.get("/add", function(req, res) {
+  // res.send("Welcome to the Star Wars Page!")
   res.sendFile(path.join(__dirname, "add.html"));
 });
 
@@ -77,14 +79,12 @@ app.post("/api/characters", function(req, res) {
   // This works because of our body-parser middleware
   var newcharacter = req.body;
 
-  // Using a RegEx Pattern to remove spaces from newCharacter
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
-
   console.log(newcharacter);
 
+  // We then add the json the user sent to the character array
   characters.push(newcharacter);
 
+  // We then display the JSON to the users
   res.json(newcharacter);
 });
 
